@@ -1,8 +1,9 @@
 'use strict';
 $(document).ready(function(){
-
+let search = 0;
 const key = "api_key=LdQIqyjno3idEvd3Uv1emsa1PvCIt8l1"
 const jQueryURL = "http://api.giphy.com/v1/gifs/search?q=" + search + key
+
 
 let topicsArray = ["cheeseburger", "coffee", "doughnut", "breakfast", "hot dog", "ice cream", "pizza", "apple", "pickle", "cookie", "salad", "banana"];
 
