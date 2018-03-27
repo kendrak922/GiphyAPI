@@ -12,7 +12,7 @@ $.ajax({
   }).then(function(response) {
     for(let i = 0; i < response.data.length; i++){
         $(".gifs").append(`<img src="${response.data[i].images.fixed_height_small_still.url}" data-animate="${response.data[i].images.fixed_height_small.url}" data-still="${response.data[i].images.fixed_height_small_still.url}" data-state="still" class="gif"></img>`)
-        $(".gifs").append(`<p>${response.data[i].rating}</p>`)
+        $(".gifs").append(`<p class="rating">${response.data[i].rating}</p>`)
  }
 console.log(response);
 });
