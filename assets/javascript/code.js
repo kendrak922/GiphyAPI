@@ -10,13 +10,25 @@ $.ajax({
     url: QueryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
     for(let i = 0; i < response.data.length; i++){
-    $(".gifs").append(`<img src="${response.data[i].images.fixed_height_small.url}"></img>`)
-}  
+        $(".gifs").append(`<img src="${response.data[i].images.fixed_height_small_still.url}" data-animate="${response.data[i].images.fixed_height_small.url}" data-still="${response.data[i].images.fixed_height_small_still.url}" data-state="still" class="gif"></img>`)
+        $(".gifs").append(`<p>${response.data[i].rating}</p>`)
+ }
 console.log(response);
 });
 }
+//pause
+function pausePlayGifs() {
+    let state = $(this).attr("data-state");
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+};
+$(document).on("click", ".gif", pausePlayGifs);
 
 // create buttons
 for (let i = 0; i < topicsArray.length; i++){
@@ -26,7 +38,6 @@ a.attr("data-name", topicsArray[i])
 a.text(topicsArray[i]);
 $("#foodButton").append(a);
 }
-
 // add new search
 $("#submit").click(function() {
 event.preventDefault();
@@ -36,23 +47,23 @@ if (newFood === undefined || newFood === '') {
 }
 let a = $("<button>")
 a.addClass("food");
-a.attr("data-name", newFood);
+a.attr("value", newFood);
 a.text(newFood);
+topicsArray.push(newFood);
 $("#foodButton").append(a);
+
 // clearbox
 $("#search").val("");
 searchGif(newFood)
+
 });
-
-$("button").click(function(){
-let buttonFood = $(this).val() 
-console.log(buttonFood)
-    searchGif(buttonFood)
-}
-
-)
-
-
+//make buttons work
+function foodButton() {
+    event.preventDefault();
+    let buttonFood = $(".food").val().trim() 
+    searchGif(buttonFood);
+    };
+$(document).on("click", ".food", foodButton);
 
 });
 
