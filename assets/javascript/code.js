@@ -34,7 +34,7 @@ $(document).on("click", ".gif", pausePlayGifs);
 for (let i = 0; i < topicsArray.length; i++){
 let a = $("<button>");
 a.addClass("food");
-a.attr("data-name", topicsArray[i])
+a.attr("value", topicsArray[i])
 a.text(topicsArray[i]);
 $("#foodButton").append(a);
 }
@@ -54,15 +54,16 @@ $("#foodButton").append(a);
 
 // clearbox
 $("#search").val("");
+
 searchGif(newFood)
 
 });
 //make buttons work
 function foodButton() {
-    event.preventDefault();
-    let buttonFood = $(".food").val().trim() 
+    let buttonFood = $(this).val()
     searchGif(buttonFood);
-    };
+ };
+
 $(document).on("click", ".food", foodButton);
 
 });
