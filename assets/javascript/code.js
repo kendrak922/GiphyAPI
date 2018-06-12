@@ -12,8 +12,8 @@ $.ajax({
   }).then(function(response) {
     $(".gifs").empty();
     for(let i = 0; i < response.data.length; i++){
-        $(".gifs").append(`<img src="${response.data[i].images.fixed_height_small_still.url}" data-animate="${response.data[i].images.fixed_height_small.url}" data-still="${response.data[i].images.fixed_height_small_still.url}" data-state="still" class="gif"></img>`)
-        $(".gifs").append(`<p class="rating">${response.data[i].rating}</p>`)
+        $(".gifs").append(`<div"><img class="img-responsive"src="${response.data[i].images.fixed_height_small_still.url}" data-animate="${response.data[i].images.fixed_height_small.url}" data-still="${response.data[i].images.fixed_height_small_still.url}" data-state="still" class="gif"></img><p class="rating">${response.data[i].rating}</p><div>`)
+        // $(".gifs").append(`<p class="rating">${response.data[i].rating}</p>`)
     }
 });
 }
@@ -46,7 +46,7 @@ let newFood = $("#search").val().trim();
 if (newFood === undefined || newFood === '') {
     newfood = 'code';
 }
-let a = $("<button>")
+let a = $("<button>");
 a.addClass("food");
 a.attr("value", newFood);
 a.text(newFood);
