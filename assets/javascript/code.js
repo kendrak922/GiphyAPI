@@ -12,7 +12,7 @@ $.ajax({
   }).then(function(response) {
     $(".gifs").empty();
     for(let i = 0; i < response.data.length; i++){
-        $(".gifs").append(`<div"><img class="img-responsive"src="${response.data[i].images.fixed_height_small_still.url}" data-animate="${response.data[i].images.fixed_height_small.url}" data-still="${response.data[i].images.fixed_height_small_still.url}" data-state="still" class="gif"></img><p class="rating">${response.data[i].rating}</p><div>`)
+        $(".gifs").append(`<div"><img src="${response.data[i].images.fixed_height_small_still.url}" data-animate="${response.data[i].images.fixed_height_small.url}" data-still="${response.data[i].images.fixed_height_small_still.url}" data-state="still" class="gif"></img><p class="rating">${response.data[i].rating}</p><div>`)
         // $(".gifs").append(`<p class="rating">${response.data[i].rating}</p>`)
     }
 });
